@@ -172,7 +172,7 @@ def request_output_to_completion_response(
             if request.echo and request.max_tokens == 0:
                 token_ids = prompt_token_ids
                 top_logprobs = prompt_logprobs
-                output_text = prompt_text
+                output_text = ""
             elif request.echo and request.max_tokens > 0:
                 token_ids = prompt_token_ids + output.token_ids
                 top_logprobs = prompt_logprobs + output.logprobs
