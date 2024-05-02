@@ -320,6 +320,7 @@ class OpenAIServingCompletion(OpenAIServing):
             prompt_text = final_res.prompt
 
             for output in final_res.outputs:
+                print(f"{request.echo=}, {request.max_tokens=}, {output.token_ids=}, {output.logprobs=}, {output.text=}")
                 if request.echo and request.max_tokens == 0:
                     token_ids = prompt_token_ids
                     top_logprobs = prompt_logprobs
@@ -333,6 +334,7 @@ class OpenAIServingCompletion(OpenAIServing):
                     top_logprobs = output.logprobs
                     output_text = output.text
 
+                print(f"{token_ids=}, {top_logprobs=}")
                 if request.logprobs is not None:
                     logprobs = self._create_logprobs(
                         token_ids=token_ids,
